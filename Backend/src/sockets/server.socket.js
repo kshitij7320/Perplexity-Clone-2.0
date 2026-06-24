@@ -1,16 +1,27 @@
-import { tavily as Tavily } from "@tavily/core"
-
-const tavily = Tavily({
-    apiKey: process.env.TAVILY_API_KEY,
-})
+import { Server } from "socket.io";
 
 
-export const searchInternet = async ({ query }) => {
-    const results = await tavily.search(query, {
-        maxResults: 5,
+let io;
+
+export function initSocket(httpServer) {
+    io = new Server(httpServer, {
+        cors: {
+            origin: "http://localhost:5173",
+            credentials: true,
+        }
     })
 
-    console.log(JSON.stringify(results))
+    console.log("Socket.io server is RUNNING")
 
-    return JSON.stringify(results)
+    io.on("connection", (socket) => {
+        console.log("A user connected: " + socket.id)
+    })
+}
+
+export function getIO() {
+    if (!io) {
+        throw new Error("Socket.io not initialized")
+    }
+
+    return io
 }
