@@ -13,7 +13,7 @@ const httpServer = http.createServer(app);
 
 initSocket(httpServer);
 
-app.listen(port,()=>{
+httpServer.listen(port,()=>{
     console.log("Server is running")
 })
 
