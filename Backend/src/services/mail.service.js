@@ -1,5 +1,4 @@
 import nodemailer from "nodemailer";
-console.log(process.env.GOOGLE_USER, process.env.GOOGLE_CLIENT_SECRET, process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_REFRESH_TOKEN)
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
