@@ -39,7 +39,7 @@ app.get("/health",(req,res)=>{
 // app.use("/api/chats", chatRouter);
 
 app.use("/api", appRouter)
-app.get("/", (req,res)=>{
+app.get("*splat", (req,res)=>{
     res.sendFile(
         path.join(__dirname,"../../Frontend/dist/index.html")
     );
