@@ -1,8 +1,8 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-// import authRouter from "./routes/auth.routes.js";
-// import chatRouter from "./routes/chat.routes.js";
-import {appRouter} from './routes/index.js'
+import authRouter from "./routes/auth.routes.js";
+import chatRouter from "./routes/chat.routes.js";
+// import {appRouter} from './routes/index.js'
 import morgan from "morgan";
 import cors from "cors";
 import path from "path";
@@ -35,10 +35,10 @@ app.get("/health",(req,res)=>{
     });
 });
 
-// app.use("/api/auth", authRouter);
-// app.use("/api/chats", chatRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/chats", chatRouter);
 
-app.use("/api", appRouter())
+// app.use("/api", appRouter())
 app.get("*splat", (req,res)=>{
     res.sendFile(
         path.join(__dirname,"../../Frontend/dist/index.html")
